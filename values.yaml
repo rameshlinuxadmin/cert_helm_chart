@@ -25,14 +25,6 @@ deployment:
         CERT_NAME: saml-cert-1
         CERT_SECRET_NAME: saml-cert-tls-1
 
-      - CERT_NAMESPACE: test-lambda-2
-        CERT_NAME: saml-cert-2
-        CERT_SECRET_NAME: saml-cert-tls-2
-
-      - CERT_NAMESPACE: test-lambda-3
-        CERT_NAME: saml-cert-3
-        CERT_SECRET_NAME: saml-cert-tls-3
-
     AWS_REGION: ap-southeast-1
     EVENT_BUS_NAME: lambda-event
     EVENT_SOURCE: saml-cert
