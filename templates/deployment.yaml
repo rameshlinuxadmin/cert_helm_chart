@@ -35,18 +35,18 @@ spec:
               memory: {{ .Values.deployment.resources.requests.memory }}
               cpu: {{ .Values.deployment.resources.requests.cpu }}
 
-          env:
+            env:
             - name: CERTIFICATES
-              value: {{ .Values.deployment.env.CERTIFICATES | toJson}}
+              value: {{ .Values.deployment.env.CERTIFICATES | toJson | quote }}
 
             - name: AWS_REGION
-              value: {{ .Values.deployment.env.AWS_REGION}}
+              value: {{ .Values.deployment.env.AWS_REGION | quote }}
 
             - name: EVENT_BUS_NAME
-              value: {{ .Values.deployment.env.EVENT_BUS_NAME}}
+              value: {{ .Values.deployment.env.EVENT_BUS_NAME | quote }}
 
             - name: EVENT_SOURCE
-              value: {{ .Values.deployment.env.EVENT_SOURCE}}
+              value: {{ .Values.deployment.env.EVENT_SOURCE | quote }}
 
             - name: EVENT_DETAIL_TYPE
-              value: {{ .Values.deployment.env.EVENT_DETAIL_TYPE}}
+              value: {{ .Values.deployment.env.EVENT_DETAIL_TYPE | quote }}
