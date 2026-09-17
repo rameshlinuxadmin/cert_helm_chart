@@ -20,11 +20,9 @@ deployment:
       cpu: "250m"
 
   env:
-    CERTIFICATES:
-      - CERT_NAMESPACE: test-lambda-1
-        CERT_NAME: saml-cert-1
-        CERT_SECRET_NAME: saml-cert-tls-1
-
+    CERT_NAMESPACE: test-lambda-1
+    CERT_NAME: saml-cert-1
+    CERT_SECRET_NAME: saml-cert-tls-1
     AWS_REGION: ap-southeast-1
     EVENT_BUS_NAME: lambda-event
     EVENT_SOURCE: saml-cert
