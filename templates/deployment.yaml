@@ -40,13 +40,13 @@ spec:
               value: {{ .Values.deployment.env.CERTIFICATES | toJson | quote }}
 
             - name: AWS_REGION
-              value: {{ .Values.deployment.env.AWS_REGION | quote }}
+              value: {{ .Values.deployment.env.AWS_REGION }}
 
             - name: EVENT_BUS_NAME
-              value: {{ .Values.deployment.env.EVENT_BUS_NAME | quote }}
+              value: {{ .Values.deployment.env.EVENT_BUS_NAME}}
 
             - name: EVENT_SOURCE
-              value: {{ .Values.deployment.env.EVENT_SOURCE | quote }}
+              value: {{ .Values.deployment.env.EVENT_SOURCE }}
 
             - name: EVENT_DETAIL_TYPE
-              value: {{ .Values.deployment.env.EVENT_DETAIL_TYPE | quote }}
+              value: {{ .Values.deployment.env.EVENT_DETAIL_TYPE}}
