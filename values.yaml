@@ -3,7 +3,7 @@ deployment:
   replicaCount: 1
 
   image:
-    repository: 155244689895.dkr.ecr.ap-southeast-1.amazonaws.com/test-lambda/lambda-test
+    repository: <Placeholder Image Name>
     tag: "24.08.26.7"
     pullPolicy: IfNotPresent
 
@@ -32,7 +32,7 @@ deployment:
       - CERT_NAMESPACE: test-lambda
         CERT_NAME: saml-cert-3
         CERT_SECRET_NAME: saml-cert-tls-3
-
+        
     AWS_REGION: ap-southeast-1
     EVENT_BUS_NAME: lambda-event
     EVENT_SOURCE: saml-cert
@@ -45,12 +45,21 @@ serviceAccount:
   namespace: test-lambda
   name: certificate-event-publisher
   annotations:
-    eksRoleArn: arn:aws:iam::155244689895:role/lambda-appstreamrole
+    eksRoleArn: <ARN to push Event to eventbridge>
 
 rbac:
-  namespace: test-lambda
-  role:
-    name: certificate-event-publisher
+  secret:
+    namespace: test-lambda
+    role:
+      name: certificate-secret-reader
 
-  roleBinding:
-    name: certificate-event-publisher
+    roleBinding:
+      name: certificate-secret-reader
+
+  restart:
+    namespace: onelogin
+    role:
+      name: certificate-deployment-patcher
+
+    roleBinding:
+      name: certificate-deployment-patcher

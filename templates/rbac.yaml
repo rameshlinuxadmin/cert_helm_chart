@@ -1,8 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ .Values.rbac.role.name }}
-  namespace: {{ .Values.rbac.namespace }}
+  name: {{ .Values.rbac.secret.role.name }}
+  namespace: {{ .Values.rbac.secret.namespace }}
 rules:
   - apiGroups: [""]
     resources:
@@ -11,18 +11,41 @@ rules:
       - get
       - list
       - watch
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ .Values.rbac.roleBinding.name }}
-  namespace: {{ .Values.rbac.namespace }}
+  name: {{ .Values.rbac.secret.roleBinding.name }}
+  namespace: {{ .Values.rbac.secret.namespace }}
 subjects:
   - kind: ServiceAccount
     name: {{ .Values.serviceAccount.name }}
-    namespace: {{ .Values.rbac.namespace }}
+    namespace: {{ .Values.serviceAccount.namespace }}
 roleRef:
   kind: Role
-  name: {{ .Values.rbac.role.name }}
+  name: {{ .Values.rbac.secret.role.name }}
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ .Values.rbac.restart.role.name }}
+  namespace:  {{ .Values.rbac.restart.namespace }}
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name:  {{ .Values.rbac.restart.rolebinding.name }}
+  namespace: {{ .Values.rbac.restart.namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.serviceAccount.name }}
+    namespace: {{ .Values.serviceAccount.namespace }}
+roleRef:
+  kind: Role
+  name: {{ .Values.rbac.restart.role.name }}
   apiGroup: rbac.authorization.k8s.io
