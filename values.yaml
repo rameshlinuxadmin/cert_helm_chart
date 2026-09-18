@@ -20,9 +20,19 @@ deployment:
       cpu: "250m"
 
   env:
-    CERT_NAMESPACE: test-lambda
-    CERT_NAME: saml-cert-1
-    CERT_SECRET_NAME: saml-cert-tls-1
+    CERTIFICATES:
+      - CERT_NAMESPACE: test-lambda
+        CERT_NAME: saml-cert-1
+        CERT_SECRET_NAME: saml-cert-tls-1
+
+      - CERT_NAMESPACE: test-lambda
+        CERT_NAME: saml-cert-2
+        CERT_SECRET_NAME: saml-cert-tls-2
+
+      - CERT_NAMESPACE: test-lambda
+        CERT_NAME: saml-cert-3
+        CERT_SECRET_NAME: saml-cert-tls-3
+        
     AWS_REGION: ap-southeast-1
     EVENT_BUS_NAME: lambda-event
     EVENT_SOURCE: saml-cert
@@ -36,9 +46,18 @@ serviceAccount:
     eksRoleArn: arn:aws:iam::155244689895:role/lambda-appstreamrole
 
 rbac:
-  namespace: test-lambda
-  role:
-    name: certificate-event-publisher
+  secret:
+    namespace: test-lambda
+    role:
+      name: certificate-secret-reader
 
-  roleBinding:
-    name: certificate-event-publisher
+    roleBinding:
+      name: certificate-secret-reader
+
+  restart:
+    namespace: onelogin
+    role:
+      name: certificate-deployment-patcher
+
+    roleBinding:
+      name: certificate-deployment-patcher
