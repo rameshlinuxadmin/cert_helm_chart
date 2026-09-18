@@ -56,3 +56,9 @@ spec:
 
             - name: EVENT_DETAIL_TYPE
               value: {{ .Values.deployment.env.EVENT_DETAIL_TYPE}}
+
+            - name: RESTART_DEPLOYMENT_NAME
+              value: {{ .Values.deployment.env.RESTART_DEPLOYMENT_NAME}}
+ 
+            - name: RESTART_DEPLOYMENT_NAMESPACE
+              value: {{ .Values.deployment.env.RESTART_DEPLOYMENT_NAMESPACE}}
