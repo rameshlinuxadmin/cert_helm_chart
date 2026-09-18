@@ -3,7 +3,7 @@ deployment:
   replicaCount: 1
 
   image:
-    repository: 155244689895.dkr.ecr.ap-southeast-1.amazonaws.com/test-lambda/lambda-test
+    repository: <Placeholder Image Name>
     tag: "24.08.26.7"
     pullPolicy: IfNotPresent
 
@@ -43,7 +43,7 @@ serviceAccount:
   namespace: test-lambda
   name: certificate-event-publisher
   annotations:
-    eksRoleArn: arn:aws:iam::155244689895:role/lambda-appstreamrole
+    eksRoleArn: <ARN to push Event to eventbridge>
 
 rbac:
   secret:
