@@ -37,6 +37,8 @@ deployment:
     EVENT_BUS_NAME: lambda-event
     EVENT_SOURCE: saml-cert
     EVENT_DETAIL_TYPE: CertificateChanged
+    RESTART_DEPLOYMENT_NAME: onelogin
+    RESTART_DEPLOYMENT_NAMESPACE: onelogin
 
 
 serviceAccount:
